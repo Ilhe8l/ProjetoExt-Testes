@@ -118,6 +118,10 @@ a:focus {
     
 }
 
+.home-img{
+    width: 80%;
+}
+
 .content{
     /*border: 1px solid black;*/
     max-width: 530px; /* Defina a largura máxima que deseja para o texto */
@@ -213,7 +217,7 @@ a:focus {
 }
 
 .page-2{
-    height: 90vh;
+    height: 80vh;
     /*border: 1px solid black;*/
     display: flex;
     align-items: center;
@@ -227,7 +231,7 @@ a:focus {
 
 .cards{
     /*border: 1px solid blue;*/
-    margin: auto;
+    margin: 100px auto;
     display: flex;
     justify-content: space-between;
     min-width: 80vw;
@@ -248,6 +252,14 @@ a:focus {
     background:#bababa;
     border-radius: 10px 10px 0 0;
     text-align: center;/*Tirar depois*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-img img{
+    max-width: 90%; 
+    max-height: 90%; 
 }
 
 .card .card-info{
@@ -310,6 +322,14 @@ a:focus {
     background: #bababa;
     border-radius: 5px;
     text-align: center;/*Tirar depois*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.unit-img img{
+    margin: 20px;
+    max-width: 500px;
 }
 
 .unit .unit-info{
