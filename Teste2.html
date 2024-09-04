@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartIdea - Validação de Ideias</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            width: 100%;
+            background-color: #333;
+            color: #fff;
+            padding: 15px 20px;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            transition: background-color 0.3s ease;
+        }
+        .navbar-icon{
+            display:none
+        }
+
+        .navbar ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .navbar ul li {
+            display: inline-block;
+        }
+
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar ul li a:hover {
+            background-color: #555;
+        }
+
+        .navbar-brand {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #f59a3d;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(to right, #f59a3d, #f5723d);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            flex-direction: column;
+            padding: 20px;
+            animation: fadeIn 2s ease;
+        }
+
+        .hero h1 {
+            font-size: 3.5em;
+            margin: 0;
+        }
+
+        .hero p {
+            font-size: 1.3em;
+            margin: 20px 0;
+        }
+
+        .hero button {
+            background-color: #333;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .hero button:hover {
+            background-color: #555;
+            transform: translateY(-5px);
+        }
+
+        /* Section */
+        section {
+            padding: 10px 20px;
+            text-align: center;
+        }
+
+        section h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #f5723d;
+        }
+
+        section p {
+            font-size: 1.2em;
+            margin-bottom: 40px;
+            color: #666;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .card {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Screenshots Section */
+        .screenshots {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin-top: 50px;
+        }
+
+        .screenshot {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin: 20px;
+            width: 320px;
+            height: 620px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .screenshot:hover {
+            transform: translateY(-10px);
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .screenshot h3 {
+            margin-bottom: 10px;
+            color: #f5723d;
+        }
+
+        .screenshot p {
+            font-size: 1em;
+            color: #666;
+            text-align: center;
+        }
+
+        /* Equipe Section */
+        .team {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .team-member {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            width: 250px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .team-member img {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            margin-bottom: 10px;
+        }
+
+        .team-member h3 {
+            margin-bottom: 10px;
+            color: #f5723d;
+        }
+
+        .team-member p {
+            font-size: 1em;
+            color: #666;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #333;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .footer p {
+            margin: 5px 0;
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Keyframes */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            .navbar{
+                display: none;
+                max-width: 100vw;
+                min-height: 100vh;
+            }
+            .navbar-icon{
+                position: fixed;
+                height: 50px;
+                width: 50px;
+                justify-content: center;
+                align-items: center;
+                background: #fff;
+                display: flex;
+                right: 0;
+                z-index: 1001;
+            }
+            .navbar ul {
+                flex-direction: column;
+                background-color: #333;
+                height: 100vh; 
+            }
+
+            .navbar ul li {
+                display: block;
+                text-align: center;
+                padding: 10px 0;
+            }
+
+            .hero h1 {
+                font-size: 2.5em;
+            }
+
+            .hero p {
+                font-size: 1.1em;
+            }
+
+            section h2 {
+                font-size: 2em;
+            }
+
+            .container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .card {
+                width: 90%;
+            }
+
+            .screenshots {
+                flex-direction: column;
+                align-items: center;
+            }
+
+           
+            .screenshot {
+                width: 90%;
+                height: auto;
+                margin: 10px 0;
+            }
+
+            .team {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .team-member {
+                width: 90%;
+            }
+            
+            section, .hero, .footer{
+                width: 100vw;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="navbar-icon">*</div>
+    <!-- Navbar -->
+    <div class="navbar" id="navbar">
+        <ul>
+            <li class="navbar-brand">SmartIdea</li>
+            <li><a href="#hero">Início</a></li>
+            <li><a href="#sobre">Sobre</a></li>
+            <li><a href="#funcionalidades">Funcionalidades</a></li>
+            <li><a href="#screenshots">Screenshots</a></li>
+            <li><a href="#equipe">Equipe</a></li>
+            <li><a href="#contato">Contato</a></li>
+        </ul>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="hero" id="hero">
+        <h1>Transforme Ideias em Realidade</h1>
+        <p>Valide e prototipe suas ideias com a plataforma SmartIdea.</p>
+        <button onclick="scrollToSection('sobre')">Saiba Mais</button>
+    </div>
+
+    <!-- Sobre Section -->
+    <section id="sobre">
+        <h2>Sobre o SmartIdea</h2>
+        <p>O SmartIdea é uma plataforma inovadora focada em ajudar empresas e startups a validar suas ideias rapidamente através da criação de protótipos funcionais. Com o SmartIdea, você pode economizar tempo e recursos ao testar suas ideias antes de lançá-las no mercado.</p>
+    </section>
+
+    <!-- Funcionalidades Section -->
+    <section id="funcionalidades">
+        <h2>Funcionalidades Principais</h2>
+        <div class="container">
+            <div class="card">
+                <h3>Prototipagem Rápida</h3>
+                <p>Crie protótipos de suas ideias em minutos, permitindo que você visualize e teste conceitos rapidamente.</p>
+            </div>
+            <div class="card">
+                <h3>Validação de Mercado</h3>
+                <p>Realize pesquisas e colete feedback do mercado para validar suas ideias antes de investir em desenvolvimento.</p>
+            </div>
+            <div class="card">
+                <h3>Integrações</h3>
+                <p>Conecte-se com outras ferramentas e plataformas para expandir as funcionalidades do SmartIdea.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Screenshots Section -->
+    <section id="screenshots">
+        <h2>Screenshots</h2>
+        <div class="screenshots">
+            <div class="screenshot">
+                <h3>Tela Inicial</h3>
+                <img src="https://via.placeholder.com/300x500" alt="Screenshot Tela Inicial">
+                <p>Veja como a interface do SmartIdea é amigável e intuitiva desde o primeiro acesso.</p>
+            </div>
+            <div class="screenshot">
+                <h3>Prototipagem</h3>
+                <img src="https://via.placeholder.com/300x500" alt="Screenshot Prototipagem">
+                <p>Crie e ajuste seus protótipos facilmente com as ferramentas oferecidas.</p>
+            </div>
+            <div class="screenshot">
+                <h3>Validação</h3>
+                <img src="https://via.placeholder.com/300x500" alt="Screenshot Validação">
+                <p>Obtenha feedback imediato e ajuste suas ideias com base nas respostas do mercado.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Equipe Section -->
+    <section id="equipe">
+        <h2>Nosso Time</h2>
+        <div class="team">
+            <div class="team-member">
+                <img src="https://via.placeholder.com/100" alt="Membro da Equipe">
+                <h3>João Silva</h3>
+                <p>Desenvolvedor Full Stack</p>
+            </div>
+            <div class="team-member">
+                <img src="https://via.placeholder.com/100" alt="Membro da Equipe">
+                <h3>Ana Souza</h3>
+                <p>UX/UI Designer</p>
+            </div>
+            <div class="team-member">
+                <img src="https://via.placeholder.com/100" alt="Membro da Equipe">
+                <h3>Lucas Oliveira</h3>
+                <p>Especialista em Validação</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contato Section -->
+    <section id="contato">
+        <h2>Entre em Contato</h2>
+        <p>Ficou interessado? Quer saber mais? Entre em contato conosco!</p>
+        <p>Email: contato@smartidea.com</p>
+        <p>Telefone: (11) 99999-9999</p>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 SmartIdea. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        // Smooth scroll
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Navbar background muda ao rolar a tela
+        window.addEventListener('scroll', function () {
+            var navbar = document.getElementById('navbar');
+            if (window.pageYOffset > 100) {
+                navbar.style.backgroundColor = '#555';
+            } else {
+                navbar.style.backgroundColor = '#333';
+            }
+        });
+
+         // Seleciona os elementos com as classes 'x' e 'y'
+         const button = document.querySelector('.navbar-icon');
+        const content = document.querySelector('.navbar');
+
+        // Adiciona um ouvinte de eventos de clique ao botão
+        button.addEventListener('click', () => {
+            // Verifica o display atual do elemento com a classe 'y'
+            if (content.style.display === 'block') {
+                // Se o display for 'flex', muda para 'none'
+                content.style.display = 'none';
+            } else {
+                // Caso contrário, muda para 'flex'
+                content.style.display = 'block';
+            }
+        });
+    </script>
+
+</body>
+</html>
